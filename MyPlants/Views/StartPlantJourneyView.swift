@@ -96,5 +96,6 @@ struct StartPlantJourneyView: View {
 }
 
 #Preview {
+
     StartPlantJourneyView(onSetReminder: {})
 }
