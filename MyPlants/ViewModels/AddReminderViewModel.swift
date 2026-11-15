@@ -1,4 +1,3 @@
-
 import Combine
 import Foundation
 
@@ -51,11 +50,13 @@ final class AddReminderViewModel: ObservableObject {
     // MARK: - Editing State
 
     let isEditing: Bool
+    private let originalPlant: PlantReminder?
 
     // MARK: - Initializer
 
     init(plant: PlantReminder? = nil) {
 
+        originalPlant = plant
         isEditing = plant != nil
 
         plantName = plant?.name ?? ""
@@ -86,11 +87,14 @@ final class AddReminderViewModel: ObservableObject {
         }
 
         return PlantReminder(
+            id: originalPlant?.id ?? UUID(),
             name: trimmedName,
             room: room,
             light: light,
             wateringDays: wateringDays,
-            waterAmount: waterAmount
+            waterAmount: waterAmount,
+            isDoneToday: originalPlant?.isDoneToday ?? false,
+            lastCompletedDate: originalPlant?.lastCompletedDate
         )
     }
 }

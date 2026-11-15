@@ -46,7 +46,7 @@ enum AppColors {
     static let mint = Color(hex: 0x28E0A8)
 
     static let sunlight = dynamicColor(
-        dark: 0xCEDE89,
+        dark: 0xCCC785,
         light: 0x718A16
     )
 

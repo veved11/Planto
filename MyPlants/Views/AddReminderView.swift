@@ -48,8 +48,11 @@ struct AddReminderView: View {
             isPresented: $isShowingDeleteConfirmation,
             titleVisibility: .visible
         ) {
+
             Button("Delete Reminder", role: .destructive) {
+
                 guard let plant else { return }
+
                 onDelete?(plant)
                 dismiss()
             }
@@ -57,6 +60,8 @@ struct AddReminderView: View {
             Button("Cancel", role: .cancel) {}
         }
     }
+
+    // MARK: - Header
 
     private var header: some View {
 
@@ -84,24 +89,50 @@ struct AddReminderView: View {
 
             Button {
 
-                guard let reminder = viewModel.makeReminder() else { return }
+                guard let reminder = viewModel.makeReminder() else {
+                    return
+                }
 
                 onSave(reminder)
                 dismiss()
 
             } label: {
 
-                Image(systemName: "checkmark")
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundStyle(.white)
-                    .frame(width: 44, height: 44)
-                    .background(AppColors.primary, in: Circle())
+                saveButtonIcon
             }
             .disabled(!viewModel.canSave)
             .opacity(viewModel.canSave ? 1 : 0.5)
             .accessibilityLabel("Save reminder")
         }
     }
+
+    // MARK: - Save Button Icon
+
+    @ViewBuilder
+    private var saveButtonIcon: some View {
+
+        if #available(iOS 26.0, *) {
+
+            Image(systemName: "checkmark")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(.white)
+                .frame(width: 44, height: 44)
+                .glassEffect(
+                    .regular.tint(Color(hex: 0x338069)),
+                    in: Circle()
+                )
+
+        } else {
+
+            Image(systemName: "checkmark")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(.white)
+                .frame(width: 44, height: 44)
+                .background(AppColors.primary, in: Circle())
+        }
+    }
+
+    // MARK: - Plant Name
 
     private var plantNameField: some View {
 
@@ -119,6 +150,8 @@ struct AddReminderView: View {
         .frame(height: 64)
         .background(AppColors.surface, in: Capsule())
     }
+
+    // MARK: - Room and Light
 
     private var roomAndLightFields: some View {
 
@@ -148,6 +181,8 @@ struct AddReminderView: View {
         )
     }
 
+    // MARK: - Watering Fields
+
     private var wateringFields: some View {
 
         VStack(spacing: 0) {
@@ -176,6 +211,8 @@ struct AddReminderView: View {
         )
     }
 
+    // MARK: - Delete Button
+
     @ViewBuilder
     private var deleteButton: some View {
 
@@ -200,6 +237,8 @@ struct AddReminderView: View {
             .padding(.top, 16)
         }
     }
+
+    // MARK: - Selection Row
 
     private func selectionRow(
         title: String,
@@ -246,10 +285,12 @@ struct AddReminderView: View {
 }
 
 #Preview("Add Reminder") {
+
     AddReminderView(onSave: { _ in })
 }
 
 #Preview("Edit Reminder") {
+
     AddReminderView(
         plant: PlantReminder(
             name: "Pothos",

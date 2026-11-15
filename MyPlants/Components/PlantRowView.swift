@@ -1,4 +1,5 @@
 
+
 import SwiftUI
 
 struct PlantRowView: View {
@@ -6,6 +7,10 @@ struct PlantRowView: View {
     let plant: PlantReminder
     let onEdit: () -> Void
     let onToggleDone: () -> Void
+
+    private var careColorOpacity: Double {
+        plant.isDoneToday ? 0.68 : 1.0
+    }
 
     var body: some View {
 
@@ -26,13 +31,13 @@ struct PlantRowView: View {
                         PlantCareChipView(
                             title: plant.light,
                             icon: "sun.max",
-                            color: AppColors.sunlight
+                            color: AppColors.sunlight.opacity(careColorOpacity)
                         )
 
                         PlantCareChipView(
                             title: plant.waterAmount,
                             icon: "drop",
-                            color: AppColors.water
+                            color: AppColors.water.opacity(careColorOpacity)
                         )
                     }
                 }

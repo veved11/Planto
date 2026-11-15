@@ -42,7 +42,7 @@ struct ProgressBarView: View {
                         .fill(AppColors.surfaceSecondary)
 
                     Capsule()
-                        .fill(AppColors.primary)
+                        .fill(Color(hex: 0x338069))
                         .frame(width: geometry.size.width * progress)
                 }
             }

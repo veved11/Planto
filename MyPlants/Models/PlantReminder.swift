@@ -1,13 +1,17 @@
+
 import Foundation
 
 struct PlantReminder: Identifiable, Codable {
+
     let id: UUID
+
     var name: String
     var room: String
     var light: String
     var wateringDays: String
     var waterAmount: String
     var isDoneToday: Bool
+    var lastCompletedDate: Date?
 
     init(
         id: UUID = UUID(),
@@ -16,7 +20,8 @@ struct PlantReminder: Identifiable, Codable {
         light: String,
         wateringDays: String = "Every day",
         waterAmount: String,
-        isDoneToday: Bool = false
+        isDoneToday: Bool = false,
+        lastCompletedDate: Date? = nil
     ) {
         self.id = id
         self.name = name
@@ -25,5 +30,6 @@ struct PlantReminder: Identifiable, Codable {
         self.wateringDays = wateringDays
         self.waterAmount = waterAmount
         self.isDoneToday = isDoneToday
+        self.lastCompletedDate = lastCompletedDate
     }
 }
