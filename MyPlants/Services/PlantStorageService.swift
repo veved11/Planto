@@ -1,7 +1,11 @@
 import Foundation
 
 final class PlantStorageService {
+    
+    
     private let storageKey = "savedPlantReminders"
+    
+    
     private let userDefaults = UserDefaults.standard
 
     func loadPlants() -> [PlantReminder] {
@@ -26,3 +30,5 @@ final class PlantStorageService {
         userDefaults.set(data, forKey: storageKey)
     }
 }
+
+

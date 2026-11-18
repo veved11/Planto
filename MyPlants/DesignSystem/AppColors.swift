@@ -54,7 +54,10 @@ enum AppColors {
         dark: 0xCAF3FB,
         light: 0x168BA3
     )
+    // MARK: - Button Colors
 
+    static let buttonGreen = Color(hex: 0x338069)
+    static let buttonBorder = Color.white.opacity(0.96)
     // MARK: - Divider
 
     static let divider = dynamicColor(

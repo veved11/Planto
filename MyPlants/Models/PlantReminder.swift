@@ -1,8 +1,7 @@
 
 import Foundation
-
 struct PlantReminder: Identifiable, Codable {
-
+    
     let id: UUID
 
     var name: String
@@ -11,6 +10,7 @@ struct PlantReminder: Identifiable, Codable {
     var wateringDays: String
     var waterAmount: String
     var isDoneToday: Bool
+    //yes or no
     var lastCompletedDate: Date?
 
     init(
@@ -18,7 +18,7 @@ struct PlantReminder: Identifiable, Codable {
         name: String,
         room: String,
         light: String,
-        wateringDays: String = "Every day",
+    wateringDays: String = "Every day",
         waterAmount: String,
         isDoneToday: Bool = false,
         lastCompletedDate: Date? = nil
@@ -33,3 +33,5 @@ struct PlantReminder: Identifiable, Codable {
         self.lastCompletedDate = lastCompletedDate
     }
 }
+
+

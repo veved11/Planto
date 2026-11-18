@@ -2,8 +2,18 @@ import SwiftUI
 
 // أنماط الخطوط المستخدمة في شاشات التطبيق ومكوّناته.
 enum AppTypography {
+
     // عنوان الشاشة الرئيسية.
     static let screenTitle = Font.system(size: 28, weight: .bold)
+
+    // عنوان شاشة البداية.
+    static let welcomeTitle = Font.system(size: 20, weight: .bold)
+
+    // النص التوضيحي في شاشة البداية.
+    static let welcomeDescription = Font.system(size: 14, weight: .regular)
+
+    // النص داخل الزر.
+    static let buttonTitle = Font.system(size: 18, weight: .medium)
 
     // اسم النبتة في صف القائمة.
     static let plantName = Font.system(size: 28, weight: .regular)

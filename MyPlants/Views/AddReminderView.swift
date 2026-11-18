@@ -2,27 +2,36 @@
 import SwiftUI
 
 struct AddReminderView: View {
-
     @Environment(\.dismiss) private var dismiss
 
     @StateObject private var viewModel: AddReminderViewModel
 
     @State private var isShowingDeleteConfirmation = false
-
+    
     private let plant: PlantReminder?
+   
     private let onSave: (PlantReminder) -> Void
+  
     private let onDelete: ((PlantReminder) -> Void)?
-
+    
     init(
-        plant: PlantReminder? = nil,
-        onSave: @escaping (PlantReminder) -> Void,
+    plant: PlantReminder? = nil,
+
+    onSave: @escaping (PlantReminder) -> Void,
+  
+    
         onDelete: ((PlantReminder) -> Void)? = nil
+    
+   
     ) {
+        
+        
         self.plant = plant
         self.onSave = onSave
         self.onDelete = onDelete
 
         _viewModel = StateObject(
+           
             wrappedValue: AddReminderViewModel(plant: plant)
         )
     }
@@ -32,9 +41,13 @@ struct AddReminderView: View {
         VStack(spacing: 28) {
 
             header
+          
             plantNameField
+
             roomAndLightFields
+
             wateringFields
+            
             deleteButton
 
             Spacer(minLength: 0)
@@ -47,7 +60,9 @@ struct AddReminderView: View {
             "Delete Reminder?",
             isPresented: $isShowingDeleteConfirmation,
             titleVisibility: .visible
+           
         ) {
+          
 
             Button("Delete Reminder", role: .destructive) {
 
@@ -89,7 +104,8 @@ struct AddReminderView: View {
 
             Button {
 
-                guard let reminder = viewModel.makeReminder() else {
+                guard let reminder = viewModel.makeReminder()
+                else {
                     return
                 }
 

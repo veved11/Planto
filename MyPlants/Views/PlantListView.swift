@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct PlantListView: View {
-
     private enum ReminderSheet: Identifiable {
-
         case add
         case edit(PlantReminder)
 
@@ -13,25 +11,23 @@ struct PlantListView: View {
                 return "add"
             case .edit(let plant):
                 return plant.id.uuidString
+                
             }
         }
     }
 
     @StateObject private var viewModel = PlantListViewModel()
-
+ 
     @Environment(\.scenePhase) private var scenePhase
 
     @State private var activeSheet: ReminderSheet?
     @State private var isShowingAllPlants = false
-
     @AppStorage("hasCreatedFirstReminder")
     private var hasCreatedFirstReminder = false
-
     private var areAllPlantsComplete: Bool {
         !viewModel.plants.isEmpty &&
         viewModel.completedCount == viewModel.plants.count
     }
-
     var body: some View {
 
         ZStack(alignment: .bottomTrailing) {
@@ -51,7 +47,8 @@ struct PlantListView: View {
 
                     if viewModel.plants.isEmpty {
                         emptyState
-                    } else if areAllPlantsComplete && !isShowingAllPlants {
+                    } else if
+                    areAllPlantsComplete && !isShowingAllPlants {
                         allDoneState
                     } else {
                         plantsContent
@@ -67,8 +64,9 @@ struct PlantListView: View {
                 }
             }
         }
-        .sheet(item: $activeSheet) { sheet in
-
+        .sheet(item: $activeSheet) { sheet
+            in
+           
             switch sheet {
 
             case .add:
@@ -86,6 +84,7 @@ struct PlantListView: View {
                 AddReminderView(
                     plant: plant,
                     onSave: { updatedPlant in
+                      
                         viewModel.update(plant, with: updatedPlant)
                     },
                     onDelete: { plantToDelete in
@@ -165,7 +164,7 @@ struct PlantListView: View {
 
             Button("View All Plants") {
                 isShowingAllPlants = true
-            }
+                                    }
             .buttonStyle(AppButtonStyle())
 
             Spacer()
@@ -176,10 +175,10 @@ struct PlantListView: View {
     // MARK: - Plants Content
 
     private var plantsContent: some View {
-
         VStack(spacing: 0) {
 
             ProgressBarView(
+              
                 completedCount: viewModel.completedCount,
                 totalCount: viewModel.plants.count
             )
@@ -189,7 +188,6 @@ struct PlantListView: View {
             List {
 
                 ForEach(viewModel.plants) { plant in
-
                     PlantRowView(
                         plant: plant,
                         onEdit: {
@@ -222,11 +220,9 @@ struct PlantListView: View {
                     )
                 }
                 .onDelete { offsets in
-
                     let plantsToDelete = offsets.map {
                         viewModel.plants[$0]
                     }
-
                     plantsToDelete.forEach(viewModel.delete)
                 }
             }
