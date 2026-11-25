@@ -23,6 +23,7 @@ MyPlants is a simple and friendly plant-care app that helps users organize their
 - Codable
 - Local Storage
 
-📱 App Preview
 
-![Planto App Preview](Planto-Preview.png)
+## 📱 App Preview
+
+![Planto App Preview](./IMG_1108.jpeg)
